@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: ingress
+    namespace: k8s-template
+spec:
+    rules:
+        - host: admin-k8s-template.io
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: mongo-express-service
+                            port:
+                                number: 8081
+        - host: app-k8s-template.io
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: client-service
+                            port:
+                                number: 8080
+                  - path: /api
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: server-service
+                            port:
+                                number: 8080
