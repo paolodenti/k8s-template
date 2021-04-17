@@ -2,12 +2,12 @@
 
 Example with
 
-* mongodb backend
+* mongo db backend
 * mongo express on mongo db backend
-* loadbalancer on mongoexpress on port 8080
 * persistent volume claim below mongodb
 * configmap to store configuration
 * opaque secret to store mongodb credentials
+* ingress on port 80/443
 
 ## How to run
 
@@ -46,9 +46,3 @@ minikube ip
 ```
 
 and navigate to ip
-
-To access the service directly
-
-```bash
-minikube service mongo-express-service
-```
