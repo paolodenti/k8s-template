@@ -15,9 +15,7 @@ Example with
 # enable ingress on minikube
 minikube addons enable ingress
 kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
-```
 
-```bash
 # create mongo credentials
 kubectl create secret generic mongo-secret \
   --from-literal=mongo-root-username='<your username>' \
