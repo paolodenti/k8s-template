@@ -46,17 +46,19 @@ kubectl apply -f ingress.yaml
 
 ### to access the service
 
-wait for all objects ready
+#### wait for all objects ready
 
 ```bash
 kubectl get all -n k8s-template
 ```
 
+#### get the ip
+
 ```bash
-minikube ip
+kubectl get ingress -n k8s-template
 ```
 
-and navigate to ip
+set the ip address in `/etc/hosts` pointing to the ip and navigate to ip.
 
 ## MacOS notes
 
@@ -69,4 +71,13 @@ minikube config unset driver
 minikube config set vm-driver hyperkit
 minikube delete
 minikube start
+```
+
+## Useful tools
+
+If you want to set the k8s-template as default, you can use kubectx
+
+```bash
+brew install kubectx
+kubens k8s-template
 ```
