@@ -16,8 +16,12 @@ Example with
 minikube addons enable ingress
 kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 
+# create custom namespace
+kubectl create namespace k8s-template
+
 # create mongo credentials
 kubectl create secret generic mongo-secret \
+  --namespace='k8s-template' \
   --from-literal=mongo-root-username='<your username>' \
   --from-literal=mongo-root-password='<your password>'
 
@@ -40,6 +44,12 @@ kubectl apply -f ingress.yaml
 ```
 
 ### to access the service
+
+wait for all objects ready
+
+```bash
+kubectl get all -n k8s-template
+```
 
 ```bash
 minikube ip
