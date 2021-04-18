@@ -10,6 +10,8 @@ Example with
 * opaque secret to store mongodb credentials
 * ingress on port 80/443
 
+![node diagram](docs/node.svg?raw=true "Node Diagram")
+
 ## How to run
 
 ```bash
