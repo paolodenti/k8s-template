@@ -2,6 +2,7 @@
 
 Example with
 
+* namespaced
 * mongo db backend
 * mongo express on mongo db backend
 * persistent volume claim below mongodb
