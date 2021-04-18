@@ -38,3 +38,8 @@ spec:
                             secretKeyRef:
                                 name: mongo-secret
                                 key: mongo-root-password
+                      - name: MONGO_INITDB_DATABASE
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mongo-configmap
+                                key: database_name

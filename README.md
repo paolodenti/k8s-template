@@ -48,10 +48,10 @@ kubectl apply -f k8s-template-ingress.yaml
 
 ### to access the service
 
-#### wait for all objects ready
+#### wait for ip on ingress
 
 ```bash
-kubectl get all -n k8s-template
+kubectl get ingress -n k8s-template --watch
 ```
 
 #### get the ip

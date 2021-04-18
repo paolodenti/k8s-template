@@ -5,3 +5,4 @@ metadata:
     namespace: k8s-template
 data:
     database_url: mongo-service
+    database_name: k8s-template
