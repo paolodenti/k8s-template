@@ -5,7 +5,7 @@ metadata:
     namespace: k8s-template
 spec:
     rules:
-        - host: k8s-template.info
+        - host: admin-k8s-template.info
           http:
               paths:
                   - path: /
@@ -15,3 +15,20 @@ spec:
                             name: mongo-express-service
                             port:
                                 number: 8081
+        - host: app-k8s-template.info
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: client-service
+                            port:
+                                number: 8080
+                  - path: /api
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: server-service
+                            port:
+                                number: 8080

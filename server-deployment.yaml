@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: server-deployment
+    namespace: k8s-template
+    labels:
+        app: server
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: server
+    template:
+        metadata:
+            labels:
+                app: server
+        spec:
+            containers:
+                - name: server
+                  image: paolodenti/k8s-template-server
+                  ports:
+                      - containerPort: 8080
+                  env:
+                      - name: MONGO_HOST
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mongo-configmap
+                                key: database_url
+                      - name: MONGO_DB
+                        valueFrom:
+                            configMapKeyRef:
+                                name: mongo-configmap
+                                key: database_name
+                      - name: MONGO_USERNAME
+                        valueFrom:
+                            secretKeyRef:
+                                name: mongo-secret
+                                key: mongo-root-username
+                      - name: MONGO_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: mongo-secret
+                                key: mongo-root-password

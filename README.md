@@ -1,4 +1,4 @@
-# Basic K8s Template
+# Basic K8s Template (for minikube)
 
 Example with
 
@@ -8,7 +8,8 @@ Example with
 * persistent volume claim below mongodb
 * configmap to store configuration
 * opaque secret to store mongodb credentials
-* ingress on port 80/443
+* REST API for basic crud, NodeJS, Express, Mongoose
+* ingress on port 80
 
 ![node diagram](docs/node.svg?raw=true "Node Diagram")
 
@@ -42,6 +43,14 @@ kubectl apply -f mongo-service.yaml
 kubectl apply -f mongo-express-deployment.yaml
 kubectl apply -f mongo-express-service.yaml
 
+# create server api deployment and service
+kubectl apply -f server-deployment.yaml
+kubectl apply -f server-service.yaml
+
+# create client spa deployment and service
+kubectl apply -f client-deployment.yaml
+kubectl apply -f client-service.yaml
+
 # configure ingress
 kubectl apply -f k8s-template-ingress.yaml 
 ```
@@ -54,13 +63,11 @@ kubectl apply -f k8s-template-ingress.yaml
 kubectl get ingress -n k8s-template --watch
 ```
 
-#### get the ip
+when you get the ip, in `/etc/hosts` set
 
-```bash
-kubectl get ingress -n k8s-template
+```text
+<ingress ip> admin-k8s-template.info app-k8s-template.info
 ```
-
-set the ip address in `/etc/hosts` pointing to the ip and navigate to ip.
 
 ## MacOS notes
 

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: client-deployment
+    namespace: k8s-template
+    labels:
+        app: client
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: client
+    template:
+        metadata:
+            labels:
+                app: client
+        spec:
+            containers:
+                - name: client
+                  image: paolodenti/k8s-template-client
+                  ports:
+                      - containerPort: 80
