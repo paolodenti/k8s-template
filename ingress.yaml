@@ -5,7 +5,8 @@ metadata:
     namespace: k8s-template
 spec:
     rules:
-        - http:
+        - host: k8s-template.info
+          http:
               paths:
                   - path: /
                     pathType: Prefix
