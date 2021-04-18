@@ -46,3 +46,16 @@ minikube ip
 ```
 
 and navigate to ip
+
+## MacOS notes
+
+Ingress is not supported by default on the docker driver You need to install hyperkit to use the Ingress.
+
+```bash
+brew install hyperkit
+minikube config unset vm-driver
+minikube config unset driver
+minikube config set vm-driver hyperkit
+minikube delete
+minikube start
+```
