@@ -43,7 +43,7 @@ kubectl apply -f mongo-express-deployment.yaml
 kubectl apply -f mongo-express-service.yaml
 
 # configure ingress
-kubectl apply -f ingress.yaml 
+kubectl apply -f k8s-template-ingress.yaml 
 ```
 
 ### to access the service
