@@ -62,7 +62,9 @@ when you get the ip, in `/etc/hosts` set
 <ingress ip> admin-k8s-template.io app-k8s-template.io
 ```
 
-to check the autoscaling in real time (it takes at least 1 minute to see valid CPU data after applying the autoscaling descriptor)
+#### Autoscaling
+
+To check the autoscaling in real time (it takes at least 1 minute to see valid CPU data after applying the autoscaling descriptor)
 
 ```bash
 get hpa server-deployment -n k8s-template --watch
