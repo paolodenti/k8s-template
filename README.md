@@ -25,7 +25,7 @@ minikube addons enable ingress
 kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 
 # create custom namespace
-kubectl create namespace k8s-template
+kubectl apply -f namespace.yaml
 
 # create mongo credentials
 kubectl create secret generic secret \
