@@ -62,6 +62,16 @@ when you get the ip, in `/etc/hosts` set
 <ingress ip> admin-k8s-template.io app-k8s-template.io
 ```
 
+to check the autoscaling in real time (it takes at least 1 minute to see valid CPU data after applying the autoscaling descriptor)
+
+```bash
+get hpa server-deployment -n k8s-template --watch
+```
+
+Example of autoscaling during a burst of requests to the API.
+
+![Autoscaling](docs/autoscaling.png?raw=true "Autoscaling")
+
 ## MacOS notes
 
 Ingress is not supported by default on the docker driver You need to install hyperkit to use the Ingress.
