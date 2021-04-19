@@ -9,7 +9,7 @@ Features
 * Persistent volume claim for mongodb
 * Configmap to store app configuration
 * Opaque secret to store mongodb credentials
-* Ingress multihost
+* Ingress multihost and multipath
 * Namespaced
 
 ![node diagram](docs/node.svg?raw=true "Node Diagram")
