@@ -17,6 +17,9 @@ Features
 ## How to run
 
 ```bash
+# minikube and kubectl must be installed
+minikube start
+
 # enable ingress on minikube
 minikube addons enable ingress
 kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
