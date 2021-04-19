@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
     name: configmap
-    namespace: k8s-template
+    namespace: {{.Values.namespace}}
 data:
     database_url: mongo-service
-    database_name: k8s-template
+    database_name: {{.Values.mongoDbName}}

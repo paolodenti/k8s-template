@@ -1,0 +1,27 @@
+# Default values for k8s-template.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: k8s-template
+mongoRootUsername: "dXNlcm5hbWU="
+mongoRootPassword: "cGFzc3dvcmQ="
+mongoDbName: "k8s-template"
+
+pvcSize: "2Gi"
+
+server:
+    replicaCount: 2
+    resources:
+        requests:
+            cpu: "250m"
+            memory: "256Mi"
+        limits:
+            cpu: "500m"
+            memory: "512Mi"
+    autoscaling:
+        minReplicas: 2
+        maxnReplicas: 5
+
+ingress:
+    adminHost: "admin-k8s-template.io"
+    appHost: "app-k8s-template.io"

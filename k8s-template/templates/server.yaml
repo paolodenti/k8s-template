@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     name: server-deployment
-    namespace: k8s-template
+    namespace: {{.Values.namespace}}
     labels:
         app: server
 spec:
-    replicas: 1
+    replicas: {{.Values.server.replicaCount}}
     selector:
         matchLabels:
             app: server
@@ -20,11 +20,11 @@ spec:
                   image: paolodenti/k8s-template-server
                   resources:
                       requests:
-                          cpu: 250m
-                          memory: 256Mi
+                          cpu: {{.Values.server.resources.requests.cpu}}
+                          memory: {{.Values.server.resources.requests.memory}}
                       limits:
-                          cpu: 500m
-                          memory: 512Mi
+                          cpu: {{.Values.server.resources.limits.cpu}}
+                          memory: {{.Values.server.resources.limits.memory}}
                   ports:
                       - containerPort: 8080
                   env:
@@ -54,7 +54,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: server-service
-    namespace: k8s-template
+    namespace: {{.Values.namespace}}
 spec:
     selector:
         app: server

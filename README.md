@@ -18,34 +18,16 @@ Features
 ## How to run
 
 ```bash
-# minikube and kubectl must be installed
+# minikube, kubectl and helm v3 must be installed
 minikube start
-
-# create custom namespace
-kubectl apply -f namespace.yaml
-
-# create mongo credentials
-kubectl create secret generic secret \
-  --namespace='k8s-template' \
-  --from-literal=mongo-root-username='<your username>' \
-  --from-literal=mongo-root-password='<your password>'
-
-# apply all configurations
-kubectl apply -f configmap.yaml
-kubectl apply -f persistentvolumeclaim.yaml
-kubectl apply -f mongo.yaml
-kubectl apply -f mongo-express.yaml
-kubectl apply -f server.yaml
-kubectl apply -f client.yaml
 
 # enable ingress on minikube
 minikube addons enable ingress
 kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
-kubectl apply -f ingress.yaml
 
-# set up autoscaling
-kubectl apply -f metrics-server.yaml
-kubectl apply -f autoscaler.yaml
+helm install k8s-template ./k8s-template
+# to re-apply the configuration after the first install
+# helm upgrade --install k8s-template ./k8s-template
 ```
 
 ### How access the service
@@ -67,12 +49,45 @@ when you get the ip, in `/etc/hosts` set
 To check the autoscaling in real time (it takes at least 1 minute to see valid CPU data after applying the autoscaling descriptor)
 
 ```bash
-get hpa server-deployment -n k8s-template --watch
+kubectl get hpa server-deployment -n k8s-template --watch
 ```
 
 Example of autoscaling during a burst of requests to the API.
 
 ![Autoscaling](docs/autoscaling.png?raw=true "Autoscaling")
+
+## Customize installation values
+
+All the customizable values are in `k8s-template/values.yaml`. You can either change the static values or run helm overriding command line, e.g.
+
+```bash
+helm install --set namespace=mynewnamespace k8s-template ./k8s-template
+```
+
+### Customize values in secret
+
+The default mongo credentials are in cleartext, encoded base64, inside `k8s-template/values.yaml`.
+
+The (decoded) default values are
+
+```yaml
+mongoRootUsername: "username"
+mongoRootPassword: "password"
+```
+
+If you want to set new credentials you can pass values on the helm command line, after base64 encoding:
+
+```bash
+HELM_USERNAME="$(echo -n '<my new username>' | base64)"
+HELM_PASSWORD="$(echo -n '<my new password>' | base64)"
+
+helm install \
+  --set mongoRootUsername="${HELM_USERNAME}" \
+  --set mongoRootPassword="${HELM_PASSWORD}" \
+  k8s-template ./k8s-template
+```
+
+Even if base64 encoded, your credentials are in cleartext inside values.yaml; **Do not commit your credentials in values.yaml**.
 
 ## MacOS notes
 

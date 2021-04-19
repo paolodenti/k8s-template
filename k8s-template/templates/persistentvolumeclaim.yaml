@@ -2,10 +2,10 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: persistentvolumeclaim
-    namespace: k8s-template
+    namespace: {{.Values.namespace}}
 spec:
     accessModes:
         - ReadWriteOnce
     resources:
         requests:
-            storage: 2Gi
+            storage: {{.Values.pvcSize}}
