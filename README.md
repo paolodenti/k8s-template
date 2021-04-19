@@ -72,7 +72,7 @@ minikube start
 
 ## Windows notes
 
-Ingress IP cannot be reached if not using hyperv. You need to use hyperv to use the Ingress.
+The ingress ip cannot be reached if you are not using hyperv. Enable hyperv using the instructions below.
 
 ```bash
 minikube config unset vm-driver
