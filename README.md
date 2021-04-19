@@ -70,6 +70,18 @@ minikube delete
 minikube start
 ```
 
+## Windows notes
+
+Ingress IP cannot be reached if not using hyperv. You need to use hyperv to use the Ingress.
+
+```bash
+minikube config unset vm-driver
+minikube config unset driver
+minikube config set vm-driver hyperv
+minikube delete
+minikube start
+```
+
 ## Useful tools
 
 If you want to set the k8s-template as default, you can use kubectx
