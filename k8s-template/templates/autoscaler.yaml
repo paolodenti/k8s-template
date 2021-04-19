@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
     name: server-deployment
-    namespace: k8s-template
+    namespace: {{.Values.namespace}}
 spec:
     minReplicas: 1
     maxReplicas: 5
