@@ -4,7 +4,7 @@ Features
 
 * Vue.js SPA frontend ([sources here](https://github.com/paolodenti/k8s-template-client))
 * Node.js Express REST API backend ([sources here](https://github.com/paolodenti/k8s-template-server))
-* Mongo db backend
+* Mongo db
 * Mongo Express admin
 * Persistent volume claim for mongodb
 * Configmap to store app configuration
