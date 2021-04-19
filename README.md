@@ -110,4 +110,6 @@ kubens k8s-template
 
 ## Additional notes
 
-metrics-server is taken from here: `https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml` and customized changing the namespace and startup args
+metrics-server is taken from here:  
+`https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml`  
+and customized changing the namespace and startup args
