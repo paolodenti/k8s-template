@@ -11,6 +11,7 @@ Features
 * Opaque secret to store mongodb credentials
 * Ingress multihost and multipath
 * Namespaced
+* Autoscaling on the rest api pod
 
 ![node diagram](docs/node.svg?raw=true "Node Diagram")
 
@@ -19,10 +20,6 @@ Features
 ```bash
 # minikube and kubectl must be installed
 minikube start
-
-# enable ingress on minikube
-minikube addons enable ingress
-kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 
 # create custom namespace
 kubectl apply -f namespace.yaml
@@ -40,7 +37,15 @@ kubectl apply -f mongo.yaml
 kubectl apply -f mongo-express.yaml
 kubectl apply -f server.yaml
 kubectl apply -f client.yaml
+
+# enable ingress on minikube
+minikube addons enable ingress
+kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 kubectl apply -f ingress.yaml
+
+# set up autoscaling
+kubectl apply -f metrics-server.yaml
+kubectl apply -f autoscaler.yaml
 ```
 
 ### How access the service
@@ -90,3 +95,7 @@ If you want to set the k8s-template as default, you can use kubectx
 brew install kubectx
 kubens k8s-template
 ```
+
+## Additional notes
+
+metrics-server is taken from here: `https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml` and customized changing the namespace and startup args
