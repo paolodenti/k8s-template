@@ -30,7 +30,7 @@ helm install k8s-template ./k8s-template
 
 ### Helm information
 
-To re-apply the configuration after the first install
+To re-apply an updated configuration after the first install
 
 ```bash
 helm upgrade --install k8s-template ./k8s-template
