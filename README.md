@@ -15,7 +15,7 @@ Features
 
 ![node diagram](docs/node.svg?raw=true "Node Diagram")
 
-## How to run
+## How to deploy on minikube
 
 ```bash
 # minikube, kubectl and helm v3 must be installed
