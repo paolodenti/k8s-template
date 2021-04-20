@@ -28,6 +28,21 @@ kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 helm install k8s-template ./k8s-template
 # to re-apply the configuration after the first install
 # helm upgrade --install k8s-template ./k8s-template
+# the sequence of files applied by helm is
+#  1) Namespace (namespace.yaml)
+#  2) ServiceAccount (metrics-server.yaml)
+#  3) Secret (secret.yaml)
+#  4) ConfigMap (configmap.yaml)
+#  5) PersistentVolumeClaim (persistentvolumeclaim.yaml)
+#  6) ClusterRole (metrics-server.yaml)
+#  7) ClusterRoleBinding (metrics-server.yaml)
+#  8) RoleBinding (metrics-server.yaml)
+#  9) Service (client.yaml, metrics-server.yaml, mongo-express.yaml, mongo.yaml, server.yaml)
+# 10) Deployment (client.yaml, metrics-server.yaml, mongo-express.yaml, mongo.yaml, server.yaml)
+# 11) HorizontalPodAutoscaler (autoscaler.yaml)
+# 12) Ingress (ingress.yaml)
+# 13) APIService (metrics-server.yaml)
+
 ```
 
 ### How access the service
