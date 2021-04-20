@@ -26,8 +26,10 @@ minikube addons enable ingress
 kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 
 helm install k8s-template ./k8s-template
+#
 # to re-apply the configuration after the first install
 # helm upgrade --install k8s-template ./k8s-template
+#
 # the sequence of files applied by helm is
 #  1) Namespace (namespace.yaml)
 #  2) ServiceAccount (metrics-server.yaml)
