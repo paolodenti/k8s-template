@@ -28,30 +28,6 @@ kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 helm install k8s-template ./k8s-template
 ```
 
-### Helm information
-
-To re-apply an updated configuration after the first install
-
-```bash
-helm upgrade --install k8s-template ./k8s-template
-```
-
-The sequence of files applied by helm is
-
-1. Namespace (namespace.yaml)
-1. ServiceAccount (metrics-server.yaml)
-1. Secret (secret.yaml)
-1. ConfigMap (configmap.yaml)
-1. PersistentVolumeClaim (persistentvolumeclaim.yaml)
-1. ClusterRole (metrics-server.yaml)
-1. ClusterRoleBinding (metrics-server.yaml)
-1. RoleBinding (metrics-server.yaml)
-1. Service (client.yaml, metrics-server.yaml, mongo-express.yaml, mongo.yaml, server.yaml)
-1. Deployment (client.yaml, metrics-server.yaml, mongo-express.yaml, mongo.yaml, server.yaml)
-1. HorizontalPodAutoscaler (autoscaler.yaml)
-1. Ingress (ingress.yaml)
-1. APIService (metrics-server.yaml)
-
 ### How access the service
 
 #### Wait for ip ready on ingress
@@ -77,6 +53,30 @@ kubectl get hpa server-deployment -n k8s-template --watch
 Example of autoscaling during a burst of requests to the API.
 
 ![Autoscaling](docs/autoscaling.png?raw=true "Autoscaling")
+
+### Helm information
+
+To re-apply an updated configuration after the first install
+
+```bash
+helm upgrade --install k8s-template ./k8s-template
+```
+
+The sequence of files applied by helm is
+
+1. Namespace (namespace.yaml)
+1. ServiceAccount (metrics-server.yaml)
+1. Secret (secret.yaml)
+1. ConfigMap (configmap.yaml)
+1. PersistentVolumeClaim (persistentvolumeclaim.yaml)
+1. ClusterRole (metrics-server.yaml)
+1. ClusterRoleBinding (metrics-server.yaml)
+1. RoleBinding (metrics-server.yaml)
+1. Service (client.yaml, metrics-server.yaml, mongo-express.yaml, mongo.yaml, server.yaml)
+1. Deployment (client.yaml, metrics-server.yaml, mongo-express.yaml, mongo.yaml, server.yaml)
+1. HorizontalPodAutoscaler (autoscaler.yaml)
+1. Ingress (ingress.yaml)
+1. APIService (metrics-server.yaml)
 
 ## Customize installation values
 
