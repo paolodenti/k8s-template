@@ -1,6 +1,8 @@
-# Basic K8s Template (for minikube)
+# Basic K8s Template
 
-Features
+With application templates and minikube deployment instructions
+
+## Features
 
 * Vue.js SPA frontend ([sources here](https://github.com/paolodenti/k8s-template-client))
 * Node.js Express REST API backend ([sources here](https://github.com/paolodenti/k8s-template-server))
