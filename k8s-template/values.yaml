@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 namespace: k8s-template
-mongoRootUsername: "dXNlcm5hbWU="
-mongoRootPassword: "cGFzc3dvcmQ="
+mongoRootUsername: "username"
+mongoRootPassword: "password"
 mongoDbName: "k8s-template"
 
 pvcSize: "2Gi"

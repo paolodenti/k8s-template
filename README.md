@@ -90,28 +90,23 @@ helm install --set namespace=mynewnamespace k8s-template ./k8s-template
 
 ### Customize values in secret
 
-The default mongo credentials are in cleartext, encoded base64, inside `k8s-template/values.yaml`.
+The default mongo credentials are in cleartext, inside `k8s-template/values.yaml`.
 
-The (decoded) default values are
+The default values are
 
 ```yaml
 mongoRootUsername: "username"
 mongoRootPassword: "password"
 ```
 
-If you want to set new credentials you can pass values on the helm command line, after base64 encoding:
+If you want to set new credentials you can pass values on the helm command line:
 
 ```bash
-HELM_USERNAME="$(echo -n '<my new username>' | base64)"
-HELM_PASSWORD="$(echo -n '<my new password>' | base64)"
-
 helm install \
-  --set mongoRootUsername="${HELM_USERNAME}" \
-  --set mongoRootPassword="${HELM_PASSWORD}" \
+  --set mongoRootUsername="<my new username>" \
+  --set mongoRootPassword="<my new password>" \
   k8s-template ./k8s-template
 ```
-
-Even if base64 encoded, your credentials are in cleartext inside values.yaml; **Do not commit your credentials in values.yaml**.
 
 ## MacOS notes
 
